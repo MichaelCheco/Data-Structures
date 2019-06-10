@@ -11,7 +11,9 @@ class Queue:
         return item
 
     def dequeue(self):
-        item = self.storage.pop()
+        if not self.storage:
+            return None
+        item = self.storage.pop(0)
         self.size -= 1
         return item
 
