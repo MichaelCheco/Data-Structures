@@ -79,8 +79,15 @@ class BinarySearchTree:
     #     # searches the binary search tree for the input value,
     #     # returning a boolean indicating whether the value exists in the tree or not.
 
-    # def get_max(self):
-    #     # returns the maximum value in the binary search tree.
+    def get_max(self):
+        # returns the maximum value in the binary search tree.
+        # if possible go right if not return root
+        # traverse right until None is reached and then return
+        if self.right is None:
+          return self.value
+        while self.right:
+          self = self.right
+        return self.value
 
     # def for_each(self, cb):
         # performs a traversal of every node in the tree, executing the passed-in callback function on each tree node value.
