@@ -89,6 +89,22 @@ class BinarySearchTree:
           self = self.right
         return self.value
 
-    # def for_each(self, cb):
+    def for_each(self, cb):
         # performs a traversal of every node in the tree, executing the passed-in callback function on each tree node value.
         # There is a myriad of ways to perform tree traversal; in this case any of them should work.
+        # use queue to store nodes
+        # perform cb on each value
+        for_each_queue = [self]
+        while for_each_queue:
+          item = for_each_queue.pop(0)
+          new_val = cb(item.value)
+          item.value = new_val
+          if item.left:
+            for_each_queue.append(item.left)
+          if item.right:
+            for_each_queue.append(item.right)
+    #     example cb for for_each method
+    #     def add_5(val):
+    #       val = val + 5
+    #       return val 
+
