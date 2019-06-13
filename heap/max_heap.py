@@ -25,18 +25,21 @@ class Heap:
       # insert adds the input value into the heap; this method should ensure that the
       #  inserted value is in the correct spot in the heap
 
-      # PARENT(i) = i/2	Return the index of the father node
-      # LEFT(i) = 2i	Return the index of the left child
-      # RIGHT(i) = 2i+1	Return the index of the right child
-
     def delete(self):
-        pass
+        self.storage[0] = self.storage[-1]
+        self.storage.pop()
+        start = 0
+        while start <= len(self.storage) - 3:
+          ind = max(self.storage[start + 1], self.storage[start + 2])
+          index = self.storage.index(ind)
+          start += 1
+          self._bubble_up(index)
 
     def get_max(self):
-        pass
+        return self.storage[0]
 
     def get_size(self):
-        pass
+        return len(self.storage)
 
     def _bubble_up(self, index):
         # keep bubbling up until we've either reached the top of the heap
@@ -58,5 +61,14 @@ class Heap:
                     break
 
     def _sift_down(self, index):
-        pass
+      left = self.storage[2 * index]
+      right = self.storage[(2 * index) + 1]
+      max_val = max(left, right)
+      if self.storage[index] < max_val:
+        swap_index = self.storage.index(max_val)
+        val = self.storage[index]
+        self.storage[index] = max_val
+        self.storage[swap_index] = val
+      
+
 
